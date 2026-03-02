@@ -1,0 +1,75 @@
+{
+    "version": 1,
+    "name": "RedEngineInputActions",
+    "maps": [
+        {
+            "name": "RedEngineActionMap",
+            "id": "a875f6b2-f46d-4a3f-982c-91bea2c7683e",
+            "actions": [
+                {
+                    "name": "PlayDataOne",
+                    "type": "Button",
+                    "id": "c3703835-3573-48b1-b584-3f9333481864",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlayDataTwo",
+                    "type": "Button",
+                    "id": "046c569f-161f-4fba-9830-30c4c774423a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PlayDataThree",
+                    "type": "Button",
+                    "id": "77105ea1-ac6d-4923-bd04-fb40a09cce5c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4e695a99-17d7-4086-97aa-8446855a0b09",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayDataOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "20776f5a-d95d-4c03-b873-046cf3e8d0b3",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayDataTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "517f4f50-bfce-4688-be3d-aa0da74a8aaa",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayDataThree",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
