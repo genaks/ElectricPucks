@@ -18,20 +18,6 @@ namespace RedEngine.Core
 
         private readonly Dictionary<Type, IGameService> _registeredServices = new();
 
-        public T Get<T>() where T : IGameService
-        {
-            Type type = typeof(T);
-
-            if (_registeredServices.ContainsKey(type))
-            {
-                return (T)_registeredServices[type];
-            }
-
-            Debug.LogError($"{type} not registered with {GetType().Name}");
-			
-            throw new InvalidOperationException();
-        }
-
         public bool TryGet<T>(out T gameService) where T : IGameService
         {
             if (_registeredServices.TryGetValue(typeof(T), out IGameService gameServiceInterface))
