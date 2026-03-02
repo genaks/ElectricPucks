@@ -1,11 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using RedEngine.Core;
+using Core;
+using Data;
+using RedEngine;
+using RedEngine.Gameplay;
 using Tools;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-namespace RedEngine.Gameplay
+namespace Gameplay
 {
     public class PucksController : MonoBehaviour
     {
@@ -13,27 +16,54 @@ namespace RedEngine.Gameplay
         
         private TrackableLocator _trackableLocator;
         private Dictionary<uint, Puck> _registeredPucks = new ();
+
+        private RedEngineInputActions _redEngineInputActions;
+
+        private void Awake()
+        {
+            _redEngineInputActions = new RedEngineInputActions();
+            _redEngineInputActions.RedEngineActionMap.PlayDataOne.performed += PlayDataOne;
+            _redEngineInputActions.RedEngineActionMap.PlayDataTwo.performed += PlayDataTwo;
+            _redEngineInputActions.RedEngineActionMap.PlayDataThree.performed += PlayDataThree;
+        }
         
         private void Start()
         {
             ServiceLocator.Instance.TryGet(out _trackableLocator);
         }
+        
+        public void OnEnable()
+        {
+            _redEngineInputActions.Enable();
+        }
 
-        private void PlayDataOne()
+        public void OnDisable()
+        {
+            _redEngineInputActions.Disable();
+        }
+
+        private void OnDestroy()
+        {
+            _redEngineInputActions.RedEngineActionMap.PlayDataOne.performed -= PlayDataOne;
+            _redEngineInputActions.RedEngineActionMap.PlayDataTwo.performed -= PlayDataTwo;
+            _redEngineInputActions.RedEngineActionMap.PlayDataThree.performed -= PlayDataThree;
+        }
+
+        private void PlayDataOne(InputAction.CallbackContext callbackContext)
         {
             ResetPucks();
             IReadOnlyList<FrameData> frameData = PuckTestDataLoader.LoadPuckData(1);
             StartCoroutine(StartPlayback(frameData));
         }
 
-        private void PlayDataTwo()
+        private void PlayDataTwo(InputAction.CallbackContext callbackContext)
         {
             ResetPucks();
             IReadOnlyList<FrameData> frameData = PuckTestDataLoader.LoadPuckData(2);
             StartCoroutine(StartPlayback(frameData));
         }
         
-        private void PlayDataThree()
+        private void PlayDataThree(InputAction.CallbackContext callbackContext)
         {
             ResetPucks();
             IReadOnlyList<FrameData> frameData = PuckTestDataLoader.LoadPuckData(3);

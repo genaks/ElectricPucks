@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RedEngine.Core
+namespace Core
 {
     public class ServiceLocator
     {

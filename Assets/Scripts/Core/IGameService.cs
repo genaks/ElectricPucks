@@ -1,4 +1,4 @@
-namespace RedEngine.Core
+namespace Core
 {
     public interface IGameService
     {

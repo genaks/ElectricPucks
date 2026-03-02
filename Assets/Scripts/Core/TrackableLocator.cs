@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
-using Core;
-using NUnit.Framework;
 using UnityEngine;
 
-namespace RedEngine.Core
+namespace Core
 {
     public class TrackableLocator : MonoBehaviour, IGameService
     {

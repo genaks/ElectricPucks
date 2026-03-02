@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
+using RedEngine;
 
-namespace RedEngine
+namespace Data
 {
     public class PuckData
     {
