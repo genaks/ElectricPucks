@@ -59,9 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4454b2ac492154bdc96c110a0b350059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RedEngine.Gameplay::RedEngine.Gameplay.Puck
-  meshRenderer: {fileID: 0}
-  blueMaterial: {fileID: 0}
-  pinkMaterial: {fileID: 0}
+  meshRenderer: {fileID: 1285656819135246208}
+  blueMaterial: {fileID: 2100000, guid: 04c55a8598e3e3247bdd0c9a63979619, type: 2}
+  pinkMaterial: {fileID: 2100000, guid: a97ca6abe3ba41e47bb4bbfee8d8fb1b, type: 2}
 --- !u!120 &-2073954776564510136
 LineRenderer:
   serializedVersion: 3
@@ -238,7 +238,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97ca6abe3ba41e47bb4bbfee8d8fb1b, type: 2}
+  - {fileID: 2100000, guid: 04c55a8598e3e3247bdd0c9a63979619, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

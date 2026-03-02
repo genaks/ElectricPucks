@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -404,6 +405,21 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6dcf7ba02e34f98ae16f81f4d945d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RedEngine.Gameplay::Gameplay.CameraController
+  zoomPadding: 1.3
+  minDistance: 1
+  maxDistance: 50
 --- !u!1 &372964263
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 730602578}
   - component: {fileID: 730602579}
+  - component: {fileID: 730602580}
   m_Layer: 0
   m_Name: PucksContainer
   m_TagString: Untagged
@@ -766,6 +783,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: RedEngine.Gameplay::Gameplay.PucksController
   _playbackDuration: 10
+--- !u!114 &730602580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730602577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e39731b00f842cf9ebf95f45285769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RedEngine.Core::Core.TrackableLocator
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
