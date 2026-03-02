@@ -2,7 +2,9 @@
     "name": "RedEngine.Gameplay",
     "rootNamespace": "",
     "references": [
-        "GUID:3ea134ed4e1474a8f90fbb48d5531b32"
+        "GUID:3ea134ed4e1474a8f90fbb48d5531b32",
+        "GUID:8517529f6422b4eb1b6d7e6a303aa389",
+        "GUID:44634a036a4414210a7eb97ac5aea22b"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
