@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Core;
 using Data;
 using RedEngine;
@@ -49,10 +50,16 @@ namespace Gameplay
             _redEngineInputActions.RedEngineActionMap.PlayDataThree.performed -= PlayDataThree;
         }
 
+        private void EnableInput()
+        {
+            
+        }
+
         private void PlayDataOne(InputAction.CallbackContext callbackContext)
         {
             ResetPucks();
             IReadOnlyList<FrameData> frameData = PuckTestDataLoader.LoadPuckData(1);
+            _redEngineInputActions.Disable();
             StartCoroutine(StartPlayback(frameData));
         }
 
@@ -60,6 +67,7 @@ namespace Gameplay
         {
             ResetPucks();
             IReadOnlyList<FrameData> frameData = PuckTestDataLoader.LoadPuckData(2);
+            _redEngineInputActions.Disable();
             StartCoroutine(StartPlayback(frameData));
         }
         
@@ -67,6 +75,7 @@ namespace Gameplay
         {
             ResetPucks();
             IReadOnlyList<FrameData> frameData = PuckTestDataLoader.LoadPuckData(3);
+            _redEngineInputActions.Disable();
             StartCoroutine(StartPlayback(frameData));
         }
 
@@ -78,12 +87,16 @@ namespace Gameplay
                 UpdatePucks(frame.Pucks);
                 yield return new WaitForSeconds(intervalDuration);
             }
+            
+            _redEngineInputActions.Enable();
         }
         
         private void UpdatePucks(IReadOnlyList<PuckData> puckData)
         {
+            List<uint> puckIDs = _registeredPucks.Keys.ToList();
             foreach (var puck in puckData)
             {
+                puckIDs.Remove(puck.PuckNumber);
                 if (_registeredPucks.ContainsKey(puck.PuckNumber))
                 {
                     _registeredPucks[puck.PuckNumber].SetTargetPosition(new Vector3(puck.X, 0, puck.Y));
@@ -91,9 +104,14 @@ namespace Gameplay
                 else
                 {
                     RegisterPuck(puck);
-
                     _registeredPucks[puck.PuckNumber].SetTargetPosition(new Vector3(puck.X, 0, puck.Y));
                 }
+                _registeredPucks[puck.PuckNumber].gameObject.SetActive(true);
+            }
+
+            foreach (var puckID in puckIDs) //all the pucks that aren't in the current frame data need to be set inactive
+            {
+                _registeredPucks[puckID].gameObject.SetActive(false);
             }
         }
 

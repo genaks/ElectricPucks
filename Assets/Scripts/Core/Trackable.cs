@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Core
@@ -5,12 +6,19 @@ namespace Core
     public class Trackable : MonoBehaviour
     {
         private TrackableLocator _trackableLocator;
+        private bool _registered;
 
         private void Start()
         {
-            if (ServiceLocator.Instance.TryGet(out TrackableLocator trackableLocator))
+            ServiceLocator.Instance.TryGet(out _trackableLocator);
+            _trackableLocator.RegisterTrackable(this);
+            _registered = true;
+        }
+
+        private void OnEnable()
+        {
+            if (null != _trackableLocator && !_registered)
             {
-                _trackableLocator = trackableLocator;
                 _trackableLocator.RegisterTrackable(this);
             }
         }
@@ -18,6 +26,7 @@ namespace Core
         private void OnDisable()
         {
             _trackableLocator.UnregisterTrackable(this);
+            _registered = false;
         }
     }
 }
