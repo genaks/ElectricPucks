@@ -135,6 +135,7 @@ namespace Gameplay
             foreach (var puck in _registeredPucks.Values)
             {
                 puck.ResetData();
+                puck.gameObject.SetActive(true);
             }
             _registeredPucks.Clear();
 
