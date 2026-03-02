@@ -10,10 +10,16 @@ namespace Gameplay
         [SerializeField] [Range(1f, 2f)] private float zoomPadding = 1.3f;
         [SerializeField] private float minDistance = 1f;
         [SerializeField] private float maxDistance = 50f;
+        [SerializeField] private float positionSmoothTime = 0.3f;
+        [SerializeField] private float zoomSmoothTime = 0.3f;
+        [SerializeField] [Range(0f, 2f)] private float cameraAngle = 0.7f;
 
         private Camera  _camera;
         private TrackableLocator _trackableLocator;
-
+        private float _currentDistance;
+        private Vector3 _positionVelocity;
+        private float _distanceVelocity;
+        
         void Awake()
         {
             _camera = GetComponent<Camera>();
@@ -30,9 +36,13 @@ namespace Gameplay
             if (targets.Count == 0) return;
 
             Vector3 centroid = CalculateCentroid(targets);
-            float distance   = CalculateRequiredDistance(targets, centroid);
+            float targetDistance = CalculateRequiredDistance(targets, centroid);
 
-            transform.position = centroid + new Vector3(0f, distance, 0f);
+            _currentDistance = Mathf.SmoothDamp(_currentDistance, targetDistance, ref _distanceVelocity, zoomSmoothTime);
+
+            Vector3 targetPosition = centroid + new Vector3(0f, _currentDistance, -_currentDistance * cameraAngle);
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _positionVelocity, positionSmoothTime);
+
             transform.LookAt(centroid);
         }
 
