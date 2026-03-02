@@ -1,0 +1,16 @@
+{
+    "name": "RedEngine.Tools",
+    "rootNamespace": "",
+    "references": [
+        "GUID:44634a036a4414210a7eb97ac5aea22b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

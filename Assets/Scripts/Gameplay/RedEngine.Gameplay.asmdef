@@ -1,0 +1,16 @@
+{
+    "name": "RedEngine.Gameplay",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3ea134ed4e1474a8f90fbb48d5531b32"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
