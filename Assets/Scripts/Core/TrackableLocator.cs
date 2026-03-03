@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,7 +43,6 @@ namespace Core
 
         public void WrapUp(bool isAppExit)
         {
-            _trackables.Clear();
             ServiceLocator.Instance.Unregister<TrackableLocator>();
         }
     }

@@ -8,14 +8,15 @@ using RedEngine.Gameplay;
 using Tools;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Gameplay
 {
     public class PucksController : MonoBehaviour
     {
-        [SerializeField] private float _playbackDuration = 10.0f;
+        [SerializeField] private float playbackDuration = 10.0f;
+        [SerializeField] private List<Puck> puckPool;
         
-        private TrackableLocator _trackableLocator;
         private Dictionary<uint, Puck> _registeredPucks = new ();
 
         private RedEngineInputActions _redEngineInputActions;
@@ -26,11 +27,6 @@ namespace Gameplay
             _redEngineInputActions.RedEngineActionMap.PlayDataOne.performed += PlayDataOne;
             _redEngineInputActions.RedEngineActionMap.PlayDataTwo.performed += PlayDataTwo;
             _redEngineInputActions.RedEngineActionMap.PlayDataThree.performed += PlayDataThree;
-        }
-        
-        private void Start()
-        {
-            ServiceLocator.Instance.TryGet(out _trackableLocator);
         }
         
         public void OnEnable()
@@ -48,11 +44,6 @@ namespace Gameplay
             _redEngineInputActions.RedEngineActionMap.PlayDataOne.performed -= PlayDataOne;
             _redEngineInputActions.RedEngineActionMap.PlayDataTwo.performed -= PlayDataTwo;
             _redEngineInputActions.RedEngineActionMap.PlayDataThree.performed -= PlayDataThree;
-        }
-
-        private void EnableInput()
-        {
-            
         }
 
         private void PlayDataOne(InputAction.CallbackContext callbackContext)
@@ -81,7 +72,7 @@ namespace Gameplay
 
         private IEnumerator StartPlayback(IReadOnlyList<FrameData> frameData)
         {
-            float intervalDuration = _playbackDuration / frameData.Count;
+            float intervalDuration = playbackDuration / frameData.Count;
             foreach (var frame in frameData)
             {
                 UpdatePucks(frame.Pucks);
@@ -99,11 +90,13 @@ namespace Gameplay
                 puckIDs.Remove(puck.PuckNumber);
                 if (_registeredPucks.ContainsKey(puck.PuckNumber))
                 {
+                    _registeredPucks[puck.PuckNumber].gameObject.SetActive(true);
                     _registeredPucks[puck.PuckNumber].SetTargetPosition(new Vector3(puck.X, 0, puck.Y));
                 }
                 else
                 {
                     RegisterPuck(puck);
+                    _registeredPucks[puck.PuckNumber].gameObject.SetActive(true);
                     _registeredPucks[puck.PuckNumber].SetTargetPosition(new Vector3(puck.X, 0, puck.Y));
                 }
                 _registeredPucks[puck.PuckNumber].gameObject.SetActive(true);
@@ -117,13 +110,11 @@ namespace Gameplay
 
         private void RegisterPuck(PuckData puckData)
         {
-            var trackables = _trackableLocator.GetAllTrackables();
-            foreach (var trackable in trackables)
+            foreach (var puck in puckPool)
             {
-                Puck puck = trackable.GetComponent<Puck>();
                 if (puck.ID == 0)
                 {
-                    puck.SetData(puckData.PuckNumber, puckData.PuckColour);
+                    puck.Init(puckData.PuckNumber, puckData.PuckColour);
                     _registeredPucks[puck.ID] = puck;
                     break;
                 }

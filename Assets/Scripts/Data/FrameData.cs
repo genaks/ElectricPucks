@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Data;
 
-namespace RedEngine
+namespace Data
 {
 	public class FrameData
 	{
