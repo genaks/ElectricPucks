@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
 using Core;
 using RedEngine;
 using RedEngine.Gameplay;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Gameplay
 {
@@ -14,10 +12,12 @@ namespace Gameplay
         [SerializeField] private float lineWidth = 0.1f;
         [SerializeField] private Color blueColor;
         [SerializeField] private Color pinkColor;
+        [SerializeField] private float minimumIntensity = 2.0f;
 
         private readonly List<Puck> _activePucks = new ();
         private List<LineRendererData> _lineRenderers = new ();
         private static readonly int Color1 = Shader.PropertyToID("_Color");
+        private static readonly int Intensity = Shader.PropertyToID("_Intensity");
 
         private class LineRendererData
         {
@@ -74,15 +74,13 @@ namespace Gameplay
 
         private void CreateConnection(Puck puckOne, Puck puckTwo)
         {
+            if (null == transform) return;
+            
             GameObject lineObj = new GameObject($"Line_{puckOne.name}_{puckTwo.name}");
             lineObj.transform.parent = transform;
 
             LineRenderer lineRenderer = lineObj.AddComponent<LineRenderer>();
             Material mat = new Material(lineRendererMaterial);
-            lineRenderer.material = lineRendererMaterial;
-            lineRenderer.startWidth = lineWidth;
-            lineRenderer.endWidth = lineWidth;
-            lineRenderer.positionCount = 2;
             if (puckOne.PuckColour == PuckColour.Blue)
             {
                 mat.SetColor(Color1, blueColor);
@@ -91,6 +89,10 @@ namespace Gameplay
             {
                 mat.SetColor(Color1, pinkColor);
             }
+            lineRenderer.material = mat;
+            lineRenderer.startWidth = lineWidth;
+            lineRenderer.endWidth = lineWidth;
+            lineRenderer.positionCount = 2;
 
             _lineRenderers.Add(new LineRendererData
             {
@@ -102,15 +104,43 @@ namespace Gameplay
 
         private void Update()
         {
+            if (_lineRenderers.Count == 0) return;
+            
+            float total = 0.0f;
             // Update line positions every frame
             foreach (var lineRenderer in _lineRenderers)
             {
                 if (lineRenderer.PuckOne != null && lineRenderer.PuckTwo != null)
                 {
-                    lineRenderer.Line.SetPosition(0, lineRenderer.PuckOne.transform.position);
-                    lineRenderer.Line.SetPosition(1, lineRenderer.PuckTwo.transform.position);
+                    Vector3 puckOnePosition = lineRenderer.PuckOne.transform.position;
+                    Vector3 puckTwoPosition = lineRenderer.PuckTwo.transform.position;
+                    lineRenderer.Line.SetPosition(0, puckOnePosition);
+                    lineRenderer.Line.SetPosition(1, puckTwoPosition);
+                    float length = Vector3.Distance(puckOnePosition, puckTwoPosition);
+                    total += length;
                 }
             }
+            
+            UpdateLineIntensity(total);
+        }
+
+        private void UpdateLineIntensity(float total)
+        {
+            foreach (var lineRenderer in _lineRenderers)
+            {
+                float length = Vector3.Distance(lineRenderer.PuckOne.transform.position, lineRenderer.PuckTwo.transform.position);
+                float intensity = GetIntensity(length, total, _lineRenderers.Count);
+                Debug.Log($"Line {lineRenderer.Line.gameObject.name} intensity - " + intensity);
+                lineRenderer.Line.material.SetFloat(Intensity, intensity);
+            }
+        }
+
+        private float GetIntensity(float length, float totalLength, int count)
+        {
+            totalLength -= length;
+            float averageLengthOfRest = totalLength / (count - 1);
+            float intensity = length / averageLengthOfRest;
+            return Mathf.Max(minimumIntensity, intensity);
         }
 
         private void OnDestroy()

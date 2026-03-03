@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: RedEngine.Gameplay::Gameplay.LineRendererManager
   lineRendererMaterial: {fileID: 2100000, guid: 0faf16b5b1f8e4edfa644d5675988812,
     type: 2}
-  lineWidth: 0.1
+  lineWidth: 0.2
   blueColor: {r: 0.09411765, g: 0.7490196, b: 0.92941177, a: 1}
-  pinkColor: {r: 1, g: 0.1882353, b: 0.42352942, a: 0}
+  pinkColor: {r: 1, g: 0.1882353, b: 0.42352942, a: 1}
+  minimumIntensity: 1

@@ -1253,8 +1253,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5701026186245206312, guid: 1b9ae694d1c574b01b3daa8ab150cce0,
         type: 3}
-      propertyPath: lineWidth
-      value: 0.2
+      propertyPath: minimumIntensity
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6377704972031732437, guid: 1b9ae694d1c574b01b3daa8ab150cce0,
         type: 3}
