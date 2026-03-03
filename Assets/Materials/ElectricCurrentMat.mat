@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ElectricCurrentMat
-  m_Shader: {fileID: 4800000, guid: 151f05388eca14674b71abd67d22a747, type: 3}
+  m_Shader: {fileID: 4800000, guid: ec7e59dd11be0498ea7527c429176487, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -85,29 +85,34 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _AnimSpeed: 0.8
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _BoltWidth: 0.02
+    - _BranchStrength: 0.5
+    - _Branches: 4
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _CoreWidth: 0.102
+    - _CoreWidth: 0.004
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _Distortion: 0.458
+    - _Distortion: 0.2
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Flickering: 0.635
+    - _Flickering: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GlowWidth: 0.112
-    - _Intensity: 1.32
+    - _GlowWidth: 0.02
+    - _Intensity: 4
+    - _Jaggedness: 0.6
     - _Metallic: 0
-    - _NoiseScale: 41.6
-    - _NoiseSpeed: 11.4
+    - _NoiseScale: 12
+    - _NoiseSpeed: 1.3
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
@@ -121,9 +126,11 @@ Material:
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
+    - _ZigzagAmplitude: 0.05
+    - _ZigzagFrequency: 6
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 0.23479997, b: 0.9528302, a: 1}
+    - _Color: {r: 1, g: 0, b: 0.8365736, a: 1}
     - _CoreColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

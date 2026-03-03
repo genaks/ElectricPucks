@@ -4,12 +4,13 @@ using Core;
 using RedEngine;
 using RedEngine.Gameplay;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay
 {
     public class LineRendererManager : MonoBehaviour, IGameService
     {
-        [SerializeField] private Material material;
+        [SerializeField] private Material lineRendererMaterial;
         [SerializeField] private float lineWidth = 0.1f;
         [SerializeField] private Color blueColor;
         [SerializeField] private Color pinkColor;
@@ -77,8 +78,8 @@ namespace Gameplay
             lineObj.transform.parent = transform;
 
             LineRenderer lineRenderer = lineObj.AddComponent<LineRenderer>();
-            Material mat = new Material(this.material);
-            lineRenderer.material = material;
+            Material mat = new Material(lineRendererMaterial);
+            lineRenderer.material = lineRendererMaterial;
             lineRenderer.startWidth = lineWidth;
             lineRenderer.endWidth = lineWidth;
             lineRenderer.positionCount = 2;
