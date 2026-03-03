@@ -90,13 +90,11 @@ namespace Gameplay
                 puckIDs.Remove(puck.PuckNumber);
                 if (_registeredPucks.ContainsKey(puck.PuckNumber))
                 {
-                    _registeredPucks[puck.PuckNumber].gameObject.SetActive(true);
                     _registeredPucks[puck.PuckNumber].SetTargetPosition(new Vector3(puck.X, 0, puck.Y));
                 }
                 else
                 {
                     RegisterPuck(puck);
-                    _registeredPucks[puck.PuckNumber].gameObject.SetActive(true);
                     _registeredPucks[puck.PuckNumber].SetTargetPosition(new Vector3(puck.X, 0, puck.Y));
                 }
                 _registeredPucks[puck.PuckNumber].gameObject.SetActive(true);
@@ -126,7 +124,7 @@ namespace Gameplay
             foreach (var puck in _registeredPucks.Values)
             {
                 puck.ResetData();
-                puck.gameObject.SetActive(true);
+                puck.gameObject.SetActive(false);
             }
             _registeredPucks.Clear();
 

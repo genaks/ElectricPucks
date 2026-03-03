@@ -1251,41 +1251,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1652696773}
     m_Modifications:
-    - target: {fileID: 5701026186245206312, guid: 1b9ae694d1c574b01b3daa8ab150cce0,
-        type: 3}
-      propertyPath: blueColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5701026186245206312, guid: 1b9ae694d1c574b01b3daa8ab150cce0,
-        type: 3}
-      propertyPath: blueColor.b
-      value: 0.92941177
-      objectReference: {fileID: 0}
-    - target: {fileID: 5701026186245206312, guid: 1b9ae694d1c574b01b3daa8ab150cce0,
-        type: 3}
-      propertyPath: blueColor.g
-      value: 0.7490196
-      objectReference: {fileID: 0}
-    - target: {fileID: 5701026186245206312, guid: 1b9ae694d1c574b01b3daa8ab150cce0,
-        type: 3}
-      propertyPath: blueColor.r
-      value: 0.09411765
-      objectReference: {fileID: 0}
-    - target: {fileID: 5701026186245206312, guid: 1b9ae694d1c574b01b3daa8ab150cce0,
-        type: 3}
-      propertyPath: pinkColor.b
-      value: 0.42352942
-      objectReference: {fileID: 0}
-    - target: {fileID: 5701026186245206312, guid: 1b9ae694d1c574b01b3daa8ab150cce0,
-        type: 3}
-      propertyPath: pinkColor.g
-      value: 0.1882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 5701026186245206312, guid: 1b9ae694d1c574b01b3daa8ab150cce0,
-        type: 3}
-      propertyPath: pinkColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6377704972031732437, guid: 1b9ae694d1c574b01b3daa8ab150cce0,
         type: 3}
       propertyPath: m_Name

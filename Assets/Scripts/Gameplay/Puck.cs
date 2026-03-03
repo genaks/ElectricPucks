@@ -36,6 +36,7 @@ namespace RedEngine.Gameplay
         private void OnDisable()
         {
             _moving = false;
+            _lineRendererManager.UnregisterPuck(this);
         }
 
         public void Init(uint id, PuckColour puckColour)
